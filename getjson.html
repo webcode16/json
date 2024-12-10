@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery JSON API Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Items List</h1>
+    <div id="items-container"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Function to fetch JSON data
+            function fetchItems() {
+
+                $.getJSON('https://jsonplaceholder.typicode.com/todos/1', function(data) {
+                    console.log(data);
+                    // Clear the container
+                    $('#items-container').empty();
+                    // Loop through the data and append items
+                    $.each(data, function(index, item) {
+                        $('#items-container').append(
+                            `<div class="item">ID: ${data.title}, Name: ${data.completed}</div>`
+                        );
+                    });
+                }).fail(function() {
+                    $('#items-container').html('<p>Error fetching data.</p>');
+                });
+            }
+
+            // Fetch items on page load
+            fetchItems();
+        });
+    </script>
+
+</body>
+</html>
