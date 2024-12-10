@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Load JSON with jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <h1>User Info</h1>
+  <div id="userInfo"></div>
+
+  <script>
+    $(document).ready(function() {
+      // Use jQuery to load the JSON file
+      $.getJSON('data.json', function(data) {
+        // Display the data in the div
+        $('#userInfo').html(`
+          <p>Name: ${data.name}</p>
+          <p>Age: ${data.age}</p>
+          <p>City: ${data.city}</p>
+        `);
+      }).fail(function() {
+        // Error handling if the file can't be loaded
+        alert('Error loading JSON file');
+      });
+    });
+  </script>
+
+</body>
+</html>
